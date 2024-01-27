@@ -1,1 +1,3 @@
-module.exports = {};
+module.exports = {
+    productMiddleware: require("./product.middleware"),
+};

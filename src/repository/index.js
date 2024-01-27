@@ -1,1 +1,3 @@
-module.exports = {};
+module.exports = {
+    ProductRepository: require("./product.repository"),
+};
