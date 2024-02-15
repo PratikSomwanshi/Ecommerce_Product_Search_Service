@@ -62,25 +62,8 @@ async function getProduct(req, res) {
     }
 }
 
-async function uploadProductImage(req, res) {
-    try {
-        SuccessResponse.message = "successfully created the product";
-        SuccessResponse.data = {
-            image_url: `http://localhost:5000/images/${req.file.filename}`,
-        };
-
-        return res.status(StatusCodes.CREATED).json(SuccessResponse);
-    } catch (error) {
-        console.log(error);
-
-        ErrorResponse.error = error;
-        return res.status(StatusCodes.CREATED).json(ErrorResponse);
-    }
-}
-
 module.exports = {
     createProduct,
-    uploadProductImage,
     getProductByCategory,
     getProduct,
 };

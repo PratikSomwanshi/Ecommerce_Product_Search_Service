@@ -40,6 +40,13 @@ function productCreateMiddleware(req, res, next) {
             );
         }
 
+        if (!req.body.seller) {
+            throw new AppError(
+                "seller not found in upcoming request",
+                StatusCodes.BAD_REQUEST
+            );
+        }
+
         next();
     } catch (error) {
         ErrorResponse.error = error;
