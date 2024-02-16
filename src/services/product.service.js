@@ -42,8 +42,18 @@ async function getProduct({ id }) {
     }
 }
 
+async function updateProduct({ id, data }) {
+    try {
+        const response = await productRepository.updateProduct(id, data);
+        return response;
+    } catch (error) {
+        throw new AppError(error, StatusCodes.BAD_REQUEST);
+    }
+}
+
 module.exports = {
     createProduct,
     getProductByCategory,
     getProduct,
+    updateProduct,
 };

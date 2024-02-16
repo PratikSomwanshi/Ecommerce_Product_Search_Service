@@ -1,3 +1,5 @@
+const mongoose = require("mongoose");
+
 class CrudRepository {
     constructor(model) {
         this.model = model;
@@ -22,6 +24,17 @@ class CrudRepository {
 
     async getProduct(id) {
         return await this.model.findById(id);
+    }
+
+    async updateProduct(id, data) {
+        const oid = new mongoose.Types.ObjectId(id);
+        console.log(data);
+        return await this.model.findOneAndUpdate(
+            { _id: oid },
+            {
+                ...data,
+            }
+        );
     }
 }
 
