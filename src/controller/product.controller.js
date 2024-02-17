@@ -82,9 +82,28 @@ async function updateProduct(req, res) {
     }
 }
 
+async function getSellerProduct(req, res) {
+    try {
+        const response = await productService.getSellerProduct({
+            id: req.body.id,
+        });
+
+        SuccessResponse.message = "successfully fetch the product";
+        SuccessResponse.data = response;
+
+        return res.status(StatusCodes.CREATED).json(SuccessResponse);
+    } catch (error) {
+        console.log(error);
+
+        ErrorResponse.error = error;
+        return res.status(StatusCodes.CREATED).json(ErrorResponse);
+    }
+}
+
 module.exports = {
     createProduct,
     getProductByCategory,
     getProduct,
     updateProduct,
+    getSellerProduct,
 };

@@ -3,6 +3,7 @@ const { StatusCodes } = require("http-status-codes");
 const { ProductRepository } = require("../repository");
 const AppError = require("../utils/error/AppError");
 const mongoose = require("mongoose");
+const { Product } = require("../model");
 
 const productRepository = new ProductRepository();
 
@@ -51,9 +52,30 @@ async function updateProduct({ id, data }) {
     }
 }
 
+async function getSellerProduct({ id }) {
+    try {
+        console.log(id);
+        const response = await Product.find({
+            seller: id,
+        });
+
+        console.log(response);
+
+        return response;
+    } catch (error) {
+        if (error.name == "CastError") {
+            throw new AppError("Invalid Product Id", StatusCodes.BAD_REQUEST);
+        }
+
+        if (error instanceof AppError) throw error;
+        throw new AppError(error, StatusCodes.BAD_REQUEST);
+    }
+}
+
 module.exports = {
     createProduct,
     getProductByCategory,
     getProduct,
     updateProduct,
+    getSellerProduct,
 };
