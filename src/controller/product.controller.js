@@ -19,8 +19,6 @@ async function createProduct(req, res) {
 
         return res.status(StatusCodes.CREATED).json(SuccessResponse);
     } catch (error) {
-        console.log(error);
-
         ErrorResponse.error = error;
         return res.status(StatusCodes.CREATED).json(ErrorResponse);
     }
@@ -37,8 +35,6 @@ async function getProductByCategory(req, res) {
 
         return res.status(StatusCodes.CREATED).json(SuccessResponse);
     } catch (error) {
-        console.log(error);
-
         ErrorResponse.error = error;
         return res.status(StatusCodes.CREATED).json(ErrorResponse);
     }
@@ -55,8 +51,6 @@ async function getProduct(req, res) {
 
         return res.status(StatusCodes.CREATED).json(SuccessResponse);
     } catch (error) {
-        console.log(error);
-
         ErrorResponse.error = error;
         return res.status(StatusCodes.CREATED).json(ErrorResponse);
     }
@@ -64,7 +58,7 @@ async function getProduct(req, res) {
 
 async function updateProduct(req, res) {
     try {
-        // console.log(req.body);
+        //
         const response = await productService.updateProduct({
             id: req.params.id,
             data: req.body,
@@ -75,8 +69,6 @@ async function updateProduct(req, res) {
 
         return res.status(StatusCodes.CREATED).json(SuccessResponse);
     } catch (error) {
-        console.log(error);
-
         ErrorResponse.error = error;
         return res.status(error.statusCode).json(ErrorResponse);
     }
@@ -93,8 +85,6 @@ async function getSellerProduct(req, res) {
 
         return res.status(StatusCodes.CREATED).json(SuccessResponse);
     } catch (error) {
-        console.log(error);
-
         ErrorResponse.error = error;
         return res.status(StatusCodes.CREATED).json(ErrorResponse);
     }
@@ -107,13 +97,11 @@ async function getRecentSellerProduct(req, res) {
         });
 
         SuccessResponse.message = "successfully fetch the product";
-        console.log(response.length);
+
         SuccessResponse.data = response;
 
         return res.status(StatusCodes.OK).json(SuccessResponse);
     } catch (error) {
-        console.log(error);
-
         ErrorResponse.error = error;
         return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
     }

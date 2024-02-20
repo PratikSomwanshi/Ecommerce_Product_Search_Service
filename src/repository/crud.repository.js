@@ -28,7 +28,7 @@ class CrudRepository {
 
     async updateProduct(id, data) {
         const oid = new mongoose.Types.ObjectId(id);
-        console.log(data);
+
         return await this.model.findOneAndUpdate(
             { _id: oid },
             {

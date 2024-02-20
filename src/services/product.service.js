@@ -11,7 +11,6 @@ async function createProduct(data) {
     try {
         return await productRepository.createProduct(data);
     } catch (error) {
-        console.log(error);
         throw new AppError(error, StatusCodes.BAD_REQUEST);
     }
 }
@@ -20,7 +19,6 @@ async function getProductByCategory(data) {
     try {
         return await productRepository.getProductByCategory(data);
     } catch (error) {
-        console.log(error);
         throw new AppError(error, StatusCodes.BAD_REQUEST);
     }
 }
@@ -54,12 +52,9 @@ async function updateProduct({ id, data }) {
 
 async function getSellerProduct({ id }) {
     try {
-        console.log(id);
         const response = await Product.find({
             seller: id,
         });
-
-        console.log(response);
 
         return response;
     } catch (error) {
