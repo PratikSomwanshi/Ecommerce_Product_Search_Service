@@ -13,4 +13,6 @@ router.put("/:id", productController.updateProduct);
 
 router.post("/seller", productController.getSellerProduct);
 
+router.post("/seller/recent", productController.getRecentSellerProduct);
+
 module.exports = router;

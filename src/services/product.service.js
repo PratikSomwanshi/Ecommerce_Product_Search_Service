@@ -72,10 +72,31 @@ async function getSellerProduct({ id }) {
     }
 }
 
+async function getRecentProduct({ id }) {
+    try {
+        if (mongoose.isValidObjectId(id) == false) {
+            throw new AppError("invalid id", StatusCodes.BAD_REQUEST);
+        }
+        const response = await Product.find({
+            seller: id,
+        }).limit(9);
+
+        return response;
+    } catch (error) {
+        if (error.name == "CastError") {
+            throw new AppError("Invalid Product Id", StatusCodes.BAD_REQUEST);
+        }
+
+        if (error instanceof AppError) throw error;
+        throw new AppError(error, StatusCodes.BAD_REQUEST);
+    }
+}
+
 module.exports = {
     createProduct,
     getProductByCategory,
     getProduct,
     updateProduct,
     getSellerProduct,
+    getRecentProduct,
 };

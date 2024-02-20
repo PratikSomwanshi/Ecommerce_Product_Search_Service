@@ -100,10 +100,30 @@ async function getSellerProduct(req, res) {
     }
 }
 
+async function getRecentSellerProduct(req, res) {
+    try {
+        const response = await productService.getRecentProduct({
+            id: req.body.id,
+        });
+
+        SuccessResponse.message = "successfully fetch the product";
+        console.log(response.length);
+        SuccessResponse.data = response;
+
+        return res.status(StatusCodes.OK).json(SuccessResponse);
+    } catch (error) {
+        console.log(error);
+
+        ErrorResponse.error = error;
+        return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
+    }
+}
+
 module.exports = {
     createProduct,
     getProductByCategory,
     getProduct,
     updateProduct,
     getSellerProduct,
+    getRecentSellerProduct,
 };
