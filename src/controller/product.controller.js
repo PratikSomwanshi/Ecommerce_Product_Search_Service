@@ -2,6 +2,7 @@ const { StatusCodes } = require("http-status-codes");
 
 const { productService } = require("../services");
 const { ErrorResponse, SuccessResponse } = require("../utils/common");
+const { ServerConfig } = require("../config");
 
 async function createProduct(req, res) {
     try {
@@ -111,7 +112,7 @@ async function uploadProductImage(req, res) {
     try {
         SuccessResponse.message = "successfully created the product";
         SuccessResponse.data = {
-            image_url: `http://localhost:5000/images/${req.file.filename}`,
+            image_url: `${ServerConfig.CURRENT_SERVER_URL}/images/${req.file.filename}`,
         };
 
         return res.status(StatusCodes.CREATED).json(SuccessResponse);
